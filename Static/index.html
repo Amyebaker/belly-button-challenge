@@ -9,47 +9,118 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
+<style>
+  /* DropDown Selector */
+  .stylemenu {
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 20px;
+    border-radius: 25px;
+    height: 135px;
+  }
+
+  .title-subjectID {
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    color: rgb(60, 90, 100);
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+
+  /*Demographic Info */
+  .panel-demographic {
+    border-color: rgb(206, 206, 206);
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 15px;
+    border-radius: 25px;
+    margin-top: 31px;
+  }
+
+  .panel-primary>.header-demographic {
+    height: 50px;
+    background-color:rgb(60, 90, 100);
+    border-bottom-color: rgb(242, 242, 242);
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+  }
+
+  .panel-title {
+    font-family: 'Times New Roman';
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+    line-height: 1.7;
+  }
+
+  /* chart boxes */
+.panel-graphs {
+    border-color: rgb(206, 206, 206);
+    box-shadow: 0 8px 14px -6px rgb(74, 74, 74);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+
+</style>
+
 <body>
 
   <div class="container">
+    <!--header for dashboard-->
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>Belly Button Biodiversity Dashboard</h1>
-        <p>Use the interactive charts below to explore the dataset</p>
+        <h1>Belly Button Biodiversity <br> Dashboard</h1>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>Test Subject ID No.:</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+    <hr>
+        <!--Dashboard Overview -->
+        <div class = "row">
+          <h2 class = "DashboardTitle"> Dashboard Overview</h2>
+          <hr>
+          <h4> Use the interactive graphics on this page to explore the belly button dataset </h4><br>
+          <p class="DashboardDescription"> 
+            Pick a "Test Subject ID No." from the drop down menu to see their test results.  The demographic info panel and visuals will populate to reflect the information associated with the new ID.<br>
+            <br> <u><b> There are three different visuals displayed on the dashboard: </b></u><br>
+            <ol> 
+              <li> <b> Bar Chart:</b> Top 10 bacteria species for the selected subject.  Samples are sorted in descending order based on sample value </li>
+              <li> <b> Bubble Chart: </b> All bacteria samples for the selected subject.  The bubble size reflects the sample value.  The bubble placement on the x-axis and color are based on the taxonomic unit.</li>
+              <li> <b> Gauge Dial:</b> Represents the number of times a week the selected subject reported washing their belly button.  Some subjects reported a score of 0, in which case the gauge indicator will not be visible.</li>
+            </ol><br></p></p>
         </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Demographic Info</h3>
+        <div class="row">
+          <!--Demographic Panel and DropDowns -->
+          <div class="col-md-2">
+            <div class="well stylemenu">
+              <h5 class="title-subjectID">Test Subject ID No.:</h5>
+              <select id="selDataset"></select>
+            </div>
+            <div class="panel panel-primary panel-demographic">
+              <div class="header-demographic">
+                <h3 class="panel-title">Demographic Info</h3>
+              </div>
+              <div id="sample-metadata" class="panel-body"></div>
+            </div>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
+          <div class="col-md-8 panel-graphs">
+            <div id="gauge"></div>
+          </div>
+          <div class="col-md-5 panel-graphs">
+            <div id="bar"></div>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-md-12 panel-graphs">
+            <div id="bubble"></div>
+          </div>
         </div>
       </div>
-      <div class="col-md-5">
-        <div id="bar"></div>
-      </div>
-      <div class="col-md-5">
-        <div id="gauge"></div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="bubble"></div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-  <script src="./static/js/app.js"></script>
-  <script src="./static/js/bonus.js"></script>
-  
-</body>
-
-</html>
+      <script src="https://d3js.org/d3.v5.min.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      <script src="./analysis/app.js"></script>
+      <!-- <script src="./static/js/bonus.js"></script> -->
+      
+    </body>
+    
+    </html>
